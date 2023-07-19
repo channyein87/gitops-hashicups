@@ -38,7 +38,7 @@ spec:
       serviceAccountName: products-api
       containers:
         - name: products-api
-          image: hashicorpdemoapp/product-api:v0.0.11
+          image: hashicorpdemoapp/product-api:v0.0.22
           ports:
             - containerPort: 9090
             - containerPort: 9102
