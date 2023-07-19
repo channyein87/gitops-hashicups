@@ -11,7 +11,7 @@ spec:
     - name: http
       protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 3000
   selector:
     app: frontend
 ---
@@ -42,7 +42,7 @@ spec:
         - name: frontend
           image: hashicorpdemoapp/frontend:v1.0.1
           ports:
-            - containerPort: 80
+            - containerPort: 3000
           env:
             - name: NEXT_PUBLIC_PUBLIC_API_URL
               value: http://public-api-service:8080
