@@ -4,3 +4,7 @@ namespace: apps
 resources:
   - frontend.yaml
   - ingress.yaml
+  - product-db.yaml
+  - products-api.yaml
+  - public-api.yaml
+  - configmap.yaml

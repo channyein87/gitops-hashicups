@@ -1,0 +1,62 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: products-api-service
+spec:
+  selector:
+    app: products-api
+  ports:
+    - name: http
+      protocol: TCP
+      port: 9090
+      targetPort: 9090
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: products-api
+automountServiceAccountToken: true
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: products-api-deployment
+  labels:
+    app: products-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: products-api
+  template:
+    metadata:
+      labels:
+        app: products-api
+    spec:
+      serviceAccountName: products-api
+      containers:
+        - name: products-api
+          image: hashicorpdemoapp/product-api:v0.0.11
+          ports:
+            - containerPort: 9090
+            - containerPort: 9102
+          env:
+            - name: "CONFIG_FILE"
+              value: "/config/config.json"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 9090
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+            periodSeconds: 10
+            failureThreshold: 30
+          volumeMounts:
+            - name: db
+              mountPath: "/config/config.json"
+              readOnly: true
+      volumes:
+        - name: db
+          configMap:
+            name: products-api
