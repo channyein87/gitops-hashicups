@@ -54,7 +54,7 @@ spec:
             failureThreshold: 30
           volumeMounts:
             - name: db
-              mountPath: "/config/config.json"
+              mountPath: "/config"
               readOnly: true
       volumes:
         - name: db
