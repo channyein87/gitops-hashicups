@@ -8,3 +8,4 @@ resources:
   - products-api.yaml
   - public-api.yaml
   - configmap.yaml
+  - payments.yaml
