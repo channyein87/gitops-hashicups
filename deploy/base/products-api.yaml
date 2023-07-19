@@ -4,6 +4,7 @@ kind: Service
 metadata:
   name: products-api-service
 spec:
+  type: ClusterIP
   selector:
     app: products-api
   ports:

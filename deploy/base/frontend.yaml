@@ -8,8 +8,10 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 8080
-      targetPort: 8080
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
   selector:
     app: frontend
 ---
@@ -38,11 +40,9 @@ spec:
       serviceAccountName: frontend
       containers:
         - name: frontend
-          image: hashicorpdemoapp/frontend:v0.0.7
+          image: hashicorpdemoapp/frontend:v1.0.1
           ports:
-            - containerPort: 8080
+            - containerPort: 80
           env:
-            - name: BIND_ADDRESS
-              value: ":8080"
             - name: NEXT_PUBLIC_PUBLIC_API_URL
               value: http://public-api-service:8080
