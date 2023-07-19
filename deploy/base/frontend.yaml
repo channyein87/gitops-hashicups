@@ -37,13 +37,6 @@ spec:
         app: frontend
     spec:
       serviceAccountName: frontend
-      volumes:
-      - name: config
-        configMap:
-          name: nginx-configmap
-          items:
-          - key: config
-            path: default.conf
       containers:
         - name: frontend
           image: hashicorpdemoapp/frontend:v0.0.7
