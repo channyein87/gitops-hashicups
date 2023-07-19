@@ -40,7 +40,7 @@ spec:
       serviceAccountName: frontend
       containers:
         - name: frontend
-          image: hashicorpdemoapp/frontend:v1.0.6
+          image: hashicorpdemoapp/frontend:v1.0.9
           ports:
             - containerPort: 3000
           env:
