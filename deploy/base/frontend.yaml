@@ -20,37 +20,6 @@ metadata:
   name: frontend
 automountServiceAccountToken: true
 ---
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: nginx-configmap
-data:
-  config: |
-    # /etc/nginx/conf.d/default.conf
-    server {
-        listen       80;
-        server_name  localhost;
-
-        #charset koi8-r;
-        #access_log  /var/log/nginx/host.access.log  main;
-
-        location / {
-            root   /usr/share/nginx/html;
-            index  index.html index.htm;
-        }
-
-        # Proxy pass the api location to save CORS 
-        # Use location exposed by Consul connect
-        location /api {
-            proxy_pass http://public-api-service:8080;
-        }
-
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-            root   /usr/share/nginx/html;
-        }
-    }
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -80,7 +49,6 @@ spec:
           image: hashicorpdemoapp/frontend:v0.0.7
           ports:
             - containerPort: 80
-          volumeMounts:
-            - name: config
-              mountPath: /etc/nginx/conf.d
-              readOnly: true
+          env:
+            - name: NEXT_PUBLIC_PUBLIC_API_URL
+              value: http://public-api-service:8080
