@@ -5,7 +5,7 @@ metadata:
 data:
   config.json: |
     {
-      "db_connection": "host=postgres.apps.cluster.local port=5432 user=postgres password=password dbname=products sslmode=disable",
+      "db_connection": "host=postgres port=5432 user=postgres password=password dbname=products sslmode=disable",
       "bind_address": "0.0.0.0:9090",
       "metrics_address": "localhost:9102"
     }

@@ -38,4 +38,4 @@ spec:
             - name: BIND_ADDRESS
               value: ":8080"
             - name: PRODUCTS_API_URI
-              value: "http://products-api-service.apps:9090"
+              value: "http://products-api-service:9090"
