@@ -40,9 +40,9 @@ spec:
       serviceAccountName: frontend
       containers:
         - name: frontend
-          image: hashicorpdemoapp/frontend:v1.0.1
+          image: hashicorpdemoapp/frontend:v1.0.3
           ports:
             - containerPort: 3000
           env:
             - name: NEXT_PUBLIC_PUBLIC_API_URL
-              value: http://public-api-service:8080
+              value: "/"

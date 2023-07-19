@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: public-api-service
+  name: public-api
   labels:
     app: public-api
 spec:
@@ -38,4 +38,4 @@ spec:
             - name: BIND_ADDRESS
               value: ":8080"
             - name: PRODUCTS_API_URI
-              value: "http://products-api-service:9090"
+              value: "http://products-api:9090"
