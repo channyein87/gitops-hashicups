@@ -16,3 +16,10 @@ spec:
             name: frontend
             port:
               number: 80
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: public-api
+            port:
+              number: 8080
